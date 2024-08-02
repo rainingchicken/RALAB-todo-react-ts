@@ -1,4 +1,5 @@
-const initialState = [
+import IItem from "./Interfaces";
+const initialState: Array<IItem> = [
   {
     userId: 1,
     id: 1,

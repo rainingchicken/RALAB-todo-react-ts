@@ -1,8 +1,14 @@
 import { useState } from "react";
-import Edit from "./Edit";
 import Form from "./Form";
+import IItem from "../Interfaces";
 
-const Item = ({ dispatch, payload, todoItem }) => {
+interface IItemParams {
+  dispatch: Function;
+  payload: object;
+  todoItem: IItem;
+}
+
+const Item = ({ dispatch, payload, todoItem }: IItemParams) => {
   const [edit, setEdit] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(todoItem.title);
 
@@ -13,34 +19,54 @@ const Item = ({ dispatch, payload, todoItem }) => {
     dispatch({ type: "CHECK", payload: payload });
   };
   const handleEdit = () => {
-    dispatch({ type: "EDIT", payload: payload });
+    setEdit(!edit);
   };
-  return (
-    <>
+
+  const todoList = () => {
+    return (
       <div>
-        <input
-          type="checkbox"
-          checked={todoItem.completed}
-          onChange={handleToggleCompletion}
-          name=""
-          id=""
-        />
-        <span>{todoItem.title}</span>
-        <button onClick={handleEdit}>EDIT</button>
-        <button disabled={!todoItem.completed} onClick={handleDelete}>
-          DELETE
-        </button>
-      </div>{" "}
+        <form id={`todoListItemForm${todoItem.id}`}>
+          <input
+            type="checkbox"
+            checked={todoItem.completed}
+            onChange={handleToggleCompletion}
+            name="todoListItem"
+            id={`todoListItem${todoItem.id}`}
+          />
+          <label htmlFor={`todoListItem${todoItem.id}`}>{todoItem.title}</label>
+          <button type="button" onClick={handleEdit}>
+            EDIT
+          </button>
+          <button
+            type="button"
+            disabled={!todoItem.completed}
+            onClick={handleDelete}
+          >
+            DELETE
+          </button>
+        </form>
+      </div>
+    );
+  };
+
+  const editMode = () => {
+    return (
       <Form
         state={updatedTitle}
         setState={setUpdatedTitle}
-        type="EDIT"
-        payload={{ title: updatedTitle, id: todoItem.id }}
+        type="SAVE"
+        payload={{
+          updatedTitle: updatedTitle,
+          id: todoItem.id,
+        }}
         dispatch={dispatch}
         button="SAVE"
+        edit={edit}
+        setEdit={setEdit}
       />
-    </>
-  );
+    );
+  };
+  return <>{edit ? editMode() : todoList()}</>;
 };
 
 export default Item;

@@ -1,6 +1,9 @@
+import IItem from "./Interfaces";
 interface IPayload {
   title: string;
   id: number;
+  updatedTitle: string;
+  editState: boolean;
 }
 
 interface IAction {
@@ -8,13 +11,7 @@ interface IAction {
   type: string;
 }
 
-interface iItem {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
-const reducer = (state: Array<iItem>, action: IAction) => {
+const reducer = (state: Array<IItem>, action: IAction): Array<IItem> => {
   switch (action.type) {
     case "ADD": {
       if (action.payload.title === "") {
@@ -33,10 +30,13 @@ const reducer = (state: Array<iItem>, action: IAction) => {
           ? { ...thisState, completed: !thisState.completed }
           : thisState
       );
-    case "EDIT":
+    case "SAVE":
       return state.map((thisState) =>
         thisState.id == action.payload.id
-          ? { ...thisState, title: action.payload.title }
+          ? {
+              ...thisState,
+              title: action.payload.updatedTitle,
+            }
           : thisState
       );
     default: {
