@@ -5,7 +5,7 @@ const Footer = () => {
         href="https://github.com/rainingchicken/RALAB-todo-react-ts"
         target="_blank"
       >
-        GitHub Link
+        GitHub: rainingchicken
       </a>
     </footer>
   );
