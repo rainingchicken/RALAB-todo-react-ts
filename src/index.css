@@ -1,38 +1,91 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand+SC&family=Quicksand:wght@300..700&display=swap');
 
-  color-scheme: light dark;
+/* https://fonts.google.com/specimen/Patrick+Hand+SC */
+
+:root {
+  font-family: "Patrick Hand SC", cursive;
+  font-weight: 400;
+  font-style: normal;
+
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #121316;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --ADDbtn: #06d6a0;
+  --EDITbtn: #06d6a0;
+  --DELETEbtn: #ef476f;
+  --SAVEbtn: #ffd166;
+}
+
+#root {
+  width: 600px;
+  margin: 0 auto;
+  padding: 1em
 }
 
 a {
+
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
+  cursor: pointer;
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
+}
+
+.inputFormADD,
+.inputFormSAVE {
+  padding: 0em 2em 1em;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.inputFormADD input,
+.inputFormSAVE input {
+  width: 80%;
+  padding: 0.3em 0.6em;
+  font-size: 2em;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 8px;
+}
+
+.inputFormSAVE {
+  padding: 1em 2em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.87);
+}
+
+.todoListForm {
+  display: flex;
+  word-wrap: break-word;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.87);
+  padding: 0.3em 0.6em;
+}
+
+
+.list {
+  width: 400px
 }
 
 button {
@@ -42,27 +95,50 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
+  transition: background-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+.ADDbtn:hover {
+  border-color: var(--ADDbtn);
 }
+
+.EDITbtn:hover {
+  border-color: var(--EDITbtn);
+}
+
+
+.DELETEbtn:hover {
+  background-color: var(--DELETEbtn);
+  border-color: var(--DELETEbtn);
+}
+
+.SAVEbtn:hover {
+  border-color: var(--SAVEbtn);
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+label {
+  font-size: 2em;
+}
+
+input[type=checkbox] {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+input[type=checkbox]:checked+label {
+  text-decoration: line-through;
+  opacity: .2;
+}
+
+footer {
+  margin: 1.5em;
+  text-align: center;
 }

@@ -25,25 +25,33 @@ const Item = ({ dispatch, payload, todoItem }: IItemParams) => {
   const todoList = () => {
     return (
       <div>
-        <form id={`todoListItemForm${todoItem.id}`}>
-          <input
-            type="checkbox"
-            checked={todoItem.completed}
-            onChange={handleToggleCompletion}
-            name="todoListItem"
-            id={`todoListItem${todoItem.id}`}
-          />
-          <label htmlFor={`todoListItem${todoItem.id}`}>{todoItem.title}</label>
-          <button type="button" onClick={handleEdit}>
-            EDIT
-          </button>
-          <button
-            type="button"
-            disabled={!todoItem.completed}
-            onClick={handleDelete}
-          >
-            DELETE
-          </button>
+        <form id={`todoListItemForm${todoItem.id}`} className="todoListForm">
+          <span className="list">
+            <input
+              type="checkbox"
+              checked={todoItem.completed}
+              onChange={handleToggleCompletion}
+              name="todoListItem"
+              id={`todoListItem${todoItem.id}`}
+            />
+            {"  "}
+            <label htmlFor={`todoListItem${todoItem.id}`}>
+              {todoItem.title}
+            </label>
+          </span>
+          <span className="btns">
+            <button className="EDITbtn" type="button" onClick={handleEdit}>
+              EDIT
+            </button>
+            <button
+              className="DELETEbtn"
+              type="button"
+              disabled={!todoItem.completed}
+              onClick={handleDelete}
+            >
+              DELETE
+            </button>
+          </span>
         </form>
       </div>
     );

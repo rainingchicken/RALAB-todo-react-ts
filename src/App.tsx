@@ -4,6 +4,9 @@ import Form from "./components/Form";
 import reducer from "./todoReducer";
 import Item from "./components/Item";
 
+import "./index.css";
+import Footer from "./components/Footer";
+
 function App() {
   const [title, setTitle] = useState("");
   const [todo, dispatch] = useReducer(reducer, initialState);
@@ -20,7 +23,7 @@ function App() {
   });
   return (
     <>
-      <h1>Todo List</h1>
+      <h1>🌟 Todo List ✏️</h1>
       <Form
         state={title}
         setState={setTitle}
@@ -30,6 +33,7 @@ function App() {
         button="ADD"
       />
       {todoLists}
+      <Footer />
     </>
   );
 }

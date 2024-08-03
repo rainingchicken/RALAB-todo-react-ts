@@ -21,7 +21,7 @@ const Form = ({
   edit,
   setEdit,
 }: FormParameters) => {
-  const handleSubmit = (e: FormEvent): void => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch({
       type: type,
@@ -29,17 +29,28 @@ const Form = ({
     });
     //toggle edit mode
     if (setEdit) setEdit(!edit);
+    //clears input
+    else setState("");
   };
 
-  const handleChange = (e: FormEvent): void => {
+  const handleChange = (e: FormEvent) => {
     //sets state to value of input
     setState((e.target as HTMLInputElement).value);
   };
 
   return (
-    <form name={`inputForm${type}`} onSubmit={handleSubmit}>
-      <input type="text" value={state} onChange={handleChange} />
-      <button>{button}</button>
+    <form
+      name={`inputForm${type}`}
+      className={`inputForm${type}`}
+      onSubmit={handleSubmit}
+    >
+      <input
+        type="text"
+        value={state}
+        onChange={handleChange}
+        placeholder="Add task..."
+      />
+      <button className={`${type}btn`}>{button}</button>
     </form>
   );
 };
